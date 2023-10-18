@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adba84d37d2fd5c49bff467130d482fa, type: 3}
+  m_Name: WorkerConfig
+  m_EditorClassIdentifier: 
+  _toWorkStateConfig:
+    _speed: 1
+    _workPoint: {fileID: 4950814196463209163, guid: 905b61a2c6ca9a8458195e103b744187,
+      type: 3}
+  _isWorkStateConfig:
+    _time: 7
+  _fromWorkStateConfig:
+    _speed: 1
+    _relaxingPoint: {fileID: 4476011383209820361, guid: 7e5ee5986575eb24699cd5253d56095b,
+      type: 3}
+  _relaxingStateConfig:
+    _time: 6
