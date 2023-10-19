@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
@@ -8,18 +10,41 @@ public class WorkerView : MonoBehaviour {
     private const string IsRelax = "IsRelax";
 
     private Animator _animator;
+ 
+    private Dictionary<IState, string> _states;
+    private IState _currentState;
 
-    public void Initialize() => _animator = GetComponent<Animator>();
+    public void Initialize(IReadOnlyList<IState> states) {
+        _animator ??= GetComponent<Animator>();
+        CreateStatesDictionary(states);
+    }
 
-    public void StartToWork() => _animator.SetBool(ToWork, true);
-    public void StopToWork() => _animator.SetBool(ToWork, false);
+    public void SwitchView(IState state) {
+        if (_currentState != null)
+            ShowView(_currentState, false);
 
-    public void StartIsWork() => _animator.SetBool(IsWork, true);
-    public void StopIsWork() => _animator.SetBool(IsWork, false);
+        _currentState = state;
+        ShowView(_currentState, true);
+    }
 
-    public void StartFromWork() => _animator.SetBool(FromWork, true);
-    public void StopFromWork() => _animator.SetBool(FromWork, false);
+    private void CreateStatesDictionary(IReadOnlyList<IState> states) {
+        _states = new Dictionary<IState, string> {
+            {FindStateByType<MoveToWorkState>(states), ToWork },
+            {FindStateByType<WorkingState>(states), IsWork },
+            {FindStateByType<MoveToRelaxState>(states), FromWork },
+            {FindStateByType<RelaxingState>(states), IsRelax }
+        };
+    }  
 
-    public void StartIsRelax() => _animator.SetBool(IsRelax, true);
-    public void StopIsRelax() => _animator.SetBool(IsRelax, false);
+    private IState FindStateByType<T>(IReadOnlyList<IState> states) {
+        return states.FirstOrDefault(state => state is T);
+    }
+
+    private void ShowView(IState state, bool status) {
+        if (_states.TryGetValue(state, out string value)) 
+            _animator.SetBool(value, status);
+        else 
+            Debug.LogError($"Состоянию {state} не присвоен ключ для переключения анимаций");
+    }
+
 }
