@@ -14,9 +14,9 @@ public class WorkerStateMachine : IStateSwitcher {
         _states = new List<IState>()
         {
             new MoveToWorkState(this, workPoint, worker),
-            new WorkingState(this, worker),
+            new WorkingState(this, worker.Config.IsWorkStateConfig.Time),
             new MoveToRelaxState(this, relaxingPoint, worker),
-            new RelaxingState(this,  worker)
+            new RelaxingState(this,  worker.Config.RelaxingStateConfig.Time)
         };
 
         _currentState = _states[0];

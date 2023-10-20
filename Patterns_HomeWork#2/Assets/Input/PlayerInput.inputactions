@@ -24,9 +24,18 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Boost",
+                    "name": "FastRun",
                     "type": "Button",
-                    "id": "3b08fbbb-6f76-4435-938c-8d5a6bc726c7",
+                    "id": "e949d644-c5a2-45e4-84a0-9a3b5c1b9459",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SlowRun",
+                    "type": "Button",
+                    "id": "29f3395a-f9e0-4628-9eca-8e04f6d1aec0",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -80,12 +89,23 @@
                 },
                 {
                     "name": "",
-                    "id": "43f3d711-a066-43c5-a104-256394aeb307",
+                    "id": "de3f70d5-6df5-4964-8196-6dfe30135d33",
                     "path": "<Keyboard>/leftShift",
-                    "interactions": "Hold(duration=0.4,pressPoint=0.5)",
+                    "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Boost",
+                    "action": "FastRun",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a2cac80e-abbe-449b-8094-51a2c41efde0",
+                    "path": "<Keyboard>/leftCtrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SlowRun",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

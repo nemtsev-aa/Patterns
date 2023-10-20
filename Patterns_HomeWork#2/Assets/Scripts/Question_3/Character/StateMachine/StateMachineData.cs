@@ -1,7 +1,6 @@
 using System;
 
-public class StateMachineData
-{
+public class StateMachineData {
     public float XVelocity;
     public float YVelocity;
     
@@ -31,6 +30,4 @@ public class StateMachineData
             _speed = value;
         }
     }
-
-    public bool BoostInput;
 }

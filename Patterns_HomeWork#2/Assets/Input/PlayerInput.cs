@@ -46,9 +46,18 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Boost"",
+                    ""name"": ""FastRun"",
                     ""type"": ""Button"",
-                    ""id"": ""3b08fbbb-6f76-4435-938c-8d5a6bc726c7"",
+                    ""id"": ""e949d644-c5a2-45e4-84a0-9a3b5c1b9459"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SlowRun"",
+                    ""type"": ""Button"",
+                    ""id"": ""29f3395a-f9e0-4628-9eca-8e04f6d1aec0"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -102,12 +111,23 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""43f3d711-a066-43c5-a104-256394aeb307"",
+                    ""id"": ""de3f70d5-6df5-4964-8196-6dfe30135d33"",
                     ""path"": ""<Keyboard>/leftShift"",
-                    ""interactions"": ""Hold(duration=0.4,pressPoint=0.5)"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Boost"",
+                    ""action"": ""FastRun"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a2cac80e-abbe-449b-8094-51a2c41efde0"",
+                    ""path"": ""<Keyboard>/leftCtrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SlowRun"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -120,7 +140,8 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_Movement = asset.FindActionMap("Movement", throwIfNotFound: true);
         m_Movement_Move = m_Movement.FindAction("Move", throwIfNotFound: true);
         m_Movement_Jump = m_Movement.FindAction("Jump", throwIfNotFound: true);
-        m_Movement_Boost = m_Movement.FindAction("Boost", throwIfNotFound: true);
+        m_Movement_FastRun = m_Movement.FindAction("FastRun", throwIfNotFound: true);
+        m_Movement_SlowRun = m_Movement.FindAction("SlowRun", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -182,14 +203,16 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private IMovementActions m_MovementActionsCallbackInterface;
     private readonly InputAction m_Movement_Move;
     private readonly InputAction m_Movement_Jump;
-    private readonly InputAction m_Movement_Boost;
+    private readonly InputAction m_Movement_FastRun;
+    private readonly InputAction m_Movement_SlowRun;
     public struct MovementActions
     {
         private @PlayerInput m_Wrapper;
         public MovementActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Movement_Move;
         public InputAction @Jump => m_Wrapper.m_Movement_Jump;
-        public InputAction @Boost => m_Wrapper.m_Movement_Boost;
+        public InputAction @FastRun => m_Wrapper.m_Movement_FastRun;
+        public InputAction @SlowRun => m_Wrapper.m_Movement_SlowRun;
         public InputActionMap Get() { return m_Wrapper.m_Movement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -205,9 +228,12 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Jump.started -= m_Wrapper.m_MovementActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_MovementActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_MovementActionsCallbackInterface.OnJump;
-                @Boost.started -= m_Wrapper.m_MovementActionsCallbackInterface.OnBoost;
-                @Boost.performed -= m_Wrapper.m_MovementActionsCallbackInterface.OnBoost;
-                @Boost.canceled -= m_Wrapper.m_MovementActionsCallbackInterface.OnBoost;
+                @FastRun.started -= m_Wrapper.m_MovementActionsCallbackInterface.OnFastRun;
+                @FastRun.performed -= m_Wrapper.m_MovementActionsCallbackInterface.OnFastRun;
+                @FastRun.canceled -= m_Wrapper.m_MovementActionsCallbackInterface.OnFastRun;
+                @SlowRun.started -= m_Wrapper.m_MovementActionsCallbackInterface.OnSlowRun;
+                @SlowRun.performed -= m_Wrapper.m_MovementActionsCallbackInterface.OnSlowRun;
+                @SlowRun.canceled -= m_Wrapper.m_MovementActionsCallbackInterface.OnSlowRun;
             }
             m_Wrapper.m_MovementActionsCallbackInterface = instance;
             if (instance != null)
@@ -218,9 +244,12 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
-                @Boost.started += instance.OnBoost;
-                @Boost.performed += instance.OnBoost;
-                @Boost.canceled += instance.OnBoost;
+                @FastRun.started += instance.OnFastRun;
+                @FastRun.performed += instance.OnFastRun;
+                @FastRun.canceled += instance.OnFastRun;
+                @SlowRun.started += instance.OnSlowRun;
+                @SlowRun.performed += instance.OnSlowRun;
+                @SlowRun.canceled += instance.OnSlowRun;
             }
         }
     }
@@ -229,6 +258,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
-        void OnBoost(InputAction.CallbackContext context);
+        void OnFastRun(InputAction.CallbackContext context);
+        void OnSlowRun(InputAction.CallbackContext context);
     }
 }

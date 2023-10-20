@@ -8,7 +8,7 @@ public class WalkingState : GroundedState {
     public override void Enter() {
         base.Enter();
 
-        View.StartWalking();
+        View.StartSlowRunning();
 
         SetWalkingSpeed();
     }
@@ -16,7 +16,7 @@ public class WalkingState : GroundedState {
     public override void Exit() {
         base.Exit();
 
-        View.StopWalking();
+        View.StopSlowRunning();
     }
 
     public override void Update() {
@@ -25,27 +25,11 @@ public class WalkingState : GroundedState {
         if (IsHorizontalInputZero())
             StateSwitcher.SwitchState<IdlingState>();
 
-        if (IsBoostInput() && IsHorizontalInputZero() == false) 
-            StateSwitcher.SwitchState<FastRunningState>();
+        //if (IsBoostInput() && IsHorizontalInputZero() == false) 
+        //    StateSwitcher.SwitchState<FastRunningState>();
     }
-
-    protected override void AddInputActionsCallbacks() {
-        base.AddInputActionsCallbacks();
-
-        Input.Movement.Boost.performed += OnBoostKeyPressed;
-    }
-
-    protected override void RemoveInputActionsCallbacks() {
-        base.RemoveInputActionsCallbacks();
-
-        Input.Movement.Boost.performed -= OnBoostKeyPressed;
-    }
-
-    private void OnBoostKeyPressed(InputAction.CallbackContext obj) => StateSwitcher.SwitchState<RunningState>();
 
     private void SetWalkingSpeed() {
-        /* Не смог разобраться в тем, как правильно избегать сброса эффектов движения во время смены
-         * направления движения или прехеода между состояниями ходтба/бег */
         Data.Speed = _config.Speed;
     }
 }

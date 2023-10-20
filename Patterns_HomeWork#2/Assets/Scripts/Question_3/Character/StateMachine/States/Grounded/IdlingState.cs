@@ -1,7 +1,6 @@
 public class IdlingState : GroundedState
 {
-    public IdlingState(IStateSwitcher stateSwitcher, StateMachineData data, Character character) : base(stateSwitcher, data, character)
-    {
+    public IdlingState(IStateSwitcher stateSwitcher, StateMachineData data, Character character) : base(stateSwitcher, data, character) {
     }
 
     public override void Enter()
@@ -23,6 +22,6 @@ public class IdlingState : GroundedState
         if (IsHorizontalInputZero())
             return;
 
-        StateSwitcher.SwitchState<WalkingState>();
+        StateSwitcher.SwitchState<RunningState>();
     }
 }

@@ -36,7 +36,6 @@ public abstract class MovementState : IState
     {
         Data.XInput = ReadHorizontalInput();
         Data.XVelocity = Data.XInput * Data.Speed;
-        Data.BoostInput = ReadBoostInput();
     }
 
     public virtual void Update()
@@ -51,8 +50,7 @@ public abstract class MovementState : IState
     protected virtual void RemoveInputActionsCallbacks() { }
 
     protected bool IsHorizontalInputZero() => Data.XInput == 0;
-    protected bool IsBoostInput() => Data.BoostInput == true;
-
+ 
     private Quaternion GetRotationFrom(Vector3 velocity)
     {
         if (velocity.x > 0)
@@ -67,5 +65,4 @@ public abstract class MovementState : IState
     private Vector3 GetConvertedVelocity() => new Vector3(Data.XVelocity, Data.YVelocity, 0);
 
     private float ReadHorizontalInput() => Input.Movement.Move.ReadValue<float>();
-    private bool ReadBoostInput() => Input.Movement.Boost.IsPressed();
 }

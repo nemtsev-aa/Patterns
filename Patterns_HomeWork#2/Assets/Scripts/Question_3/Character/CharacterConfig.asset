@@ -12,8 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9b34d44124598945b54fdc152d8e74e, type: 3}
   m_Name: CharacterConfig
   m_EditorClassIdentifier: 
-  _runningStateConfig:
-    _speed: 5
   _airborneStateConfig:
     _speed: 4
     _jumpingStateConfig:
@@ -21,5 +19,8 @@ MonoBehaviour:
       _timeToReachMaxHeight: 0.5
   _walkingStateConfig:
     _speed: 3
-  _fastRunningStateConfig:
-    _speed: 10
+  _runningStateConfig:
+    _slowSpeed: 3
+    _speed: 8
+    _fastSpeed: 13
+  _speedMultiplier: 0.5

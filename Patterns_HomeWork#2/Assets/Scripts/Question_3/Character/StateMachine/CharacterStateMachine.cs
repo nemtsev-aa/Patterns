@@ -10,15 +10,15 @@ public class CharacterStateMachine : IStateSwitcher {
 
     public CharacterStateMachine(Character character) {
         _data = new StateMachineData();
-
+        
         _states = new List<IState>()
         {
             new IdlingState(this, _data, character),
             new RunningState(this, _data, character),
             new JumpingState(this, _data, character),
             new FallingState(this, _data, character),
-            new WalkingState(this, _data, character),
             new FastRunningState(this, _data, character),
+            new SlowRunningState(this, _data, character),
         };
 
         _currentState = _states[0];

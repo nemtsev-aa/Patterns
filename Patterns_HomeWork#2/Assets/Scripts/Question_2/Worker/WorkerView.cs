@@ -44,7 +44,7 @@ public class WorkerView : MonoBehaviour {
         if (_states.TryGetValue(state, out string value)) 
             _animator.SetBool(value, status);
         else 
-            Debug.LogError($"Состоянию {state} не присвоен ключ для переключения анимаций");
+            Debug.LogError($"State {state} the key for switching animations is not assigned");
     }
 
 }

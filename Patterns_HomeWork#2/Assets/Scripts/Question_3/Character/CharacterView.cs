@@ -2,18 +2,18 @@ using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
-public class CharacterView : MonoBehaviour
-{
+public class CharacterView : MonoBehaviour {
     private const string IsIdling = "IsIdling";
-    private const string IsRunning = "IsRunning";
     private const string IsGrounded = "IsGrounded";
     private const string IsJumping = "IsJumping";
     private const string IsFalling = "IsFalling";
     private const string IsAirborne = "IsAirborne";
-    private const string IsWalking = "IsWalking";
     private const string IsMovement = "IsMovement";
-    private const string SpeedMultiplier = "SpeedMultiplier";
+    private const string IsSlowRunning = "IsSlowRunning";
+    private const string IsRunning = "IsRunning";
     private const string IsFastRunning = "IsFastRunning";
+
+    private const string SpeedMultiplier = "SpeedMultiplier";
 
     private Animator _animator;
 
@@ -21,9 +21,6 @@ public class CharacterView : MonoBehaviour
 
     public void StartIdling() => _animator.SetBool(IsIdling, true);
     public void StopIdling() => _animator.SetBool(IsIdling, false);
-
-    public void StartRunning() => _animator.SetBool(IsRunning, true);
-    public void StopRunning() => _animator.SetBool(IsRunning, false);
 
     public void StartGrounded() => _animator.SetBool(IsGrounded, true);
     public void StopGrounded() => _animator.SetBool(IsGrounded, false);
@@ -40,8 +37,11 @@ public class CharacterView : MonoBehaviour
     public void StartMovement() => _animator.SetBool(IsMovement, true);
     public void StopMovement() => _animator.SetBool(IsMovement, false);
 
-    public void StartWalking() => _animator.SetBool(IsWalking, true);
-    public void StopWalking() => _animator.SetBool(IsWalking, false);
+    public void StartSlowRunning() => _animator.SetBool(IsSlowRunning, true);
+    public void StopSlowRunning() => _animator.SetBool(IsSlowRunning, false);
+
+    public void StartRunning() => _animator.SetBool(IsRunning, true);
+    public void StopRunning() => _animator.SetBool(IsRunning, false);
 
     public void StartFastRunning() => _animator.SetBool(IsFastRunning, true);
     public void StopFastRunning() => _animator.SetBool(IsFastRunning, false);
