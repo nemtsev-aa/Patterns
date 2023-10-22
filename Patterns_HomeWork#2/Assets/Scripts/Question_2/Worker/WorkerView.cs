@@ -14,8 +14,12 @@ public class WorkerView : MonoBehaviour {
     private Dictionary<IState, string> _states;
     private IState _currentState;
 
-    public void Initialize(IReadOnlyList<IState> states) {
+    public void Initialize(WorkerStateMachine stateMachine) {
         _animator ??= GetComponent<Animator>();
+        
+        stateMachine.OnStateChanged += SwitchView;
+        
+        IReadOnlyList<IState> states = stateMachine.States;
         CreateStatesDictionary(states);
     }
 

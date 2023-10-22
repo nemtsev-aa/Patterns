@@ -33,5 +33,5 @@ public class RunningState : BaseRunningState {
         View.StopRunning();
     }
 
-protected override void SetSpeed() => Data.Speed = Config.Speed * SpeedMultiplier;
+protected override void SetSpeed() => Data.Speed = RunProperties.Speed;
 }

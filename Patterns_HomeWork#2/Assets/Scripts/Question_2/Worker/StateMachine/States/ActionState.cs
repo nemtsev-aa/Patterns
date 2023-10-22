@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
 public abstract class ActionState : IState {
-    protected IStateSwitcher StateSwitcher;
-    protected float ActionTime;
+    protected readonly IStateSwitcher StateSwitcher;
+    protected readonly float ActionTime;
     protected float _time;
 
     public ActionState(IStateSwitcher stateSwitcher, float actionTime) {

@@ -1,12 +1,10 @@
 public abstract class BaseRunningState : GroundedState {
     private const float KeyDown = 1;
 
-    protected RunningStateConfig Config;
-    protected float SpeedMultiplier;
+    protected UnitRunningProperties RunProperties;
 
     public BaseRunningState(IStateSwitcher stateSwitcher, StateMachineData data, Character character) : base(stateSwitcher, data, character) {
-        Config = character.Config.RunningStateConfig;
-        SpeedMultiplier = character.Config.SpeedMultiplier;
+        RunProperties = character.RunningProperties;
     }
 
     public bool IsShiftDown => Input.Movement.FastRun.ReadValue<float>() == KeyDown;

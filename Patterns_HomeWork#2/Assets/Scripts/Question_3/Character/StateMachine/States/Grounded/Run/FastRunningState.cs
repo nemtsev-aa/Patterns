@@ -27,6 +27,6 @@ public class FastRunningState : BaseRunningState {
         StateSwitcher.SwitchState<RunningState>();
     }
 
-    protected override void SetSpeed() => Data.Speed = Config.FastSpeed * SpeedMultiplier;
+    protected override void SetSpeed() => Data.Speed = RunProperties.FastSpeed;
     
 }

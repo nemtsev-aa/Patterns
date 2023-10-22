@@ -3,15 +3,15 @@ using System;
 public class CharacterEffectTaker {
     private const int DefaultSpeedMultiplier = 1;
 
-    private CharacterConfig _config;
+    private UnitRunningProperties _runProperties;
     private StateMachineData _stateMachineData;
     private CharacterView _view;
 
     private float _defaultSpeed;
     private float _multiplier;
 
-    public CharacterEffectTaker(CharacterConfig config, StateMachineData stateMachineData, CharacterView view) {
-        _config = config;
+    public CharacterEffectTaker(UnitRunningProperties runProperties, StateMachineData stateMachineData, CharacterView view) {
+        _runProperties = runProperties;
         _stateMachineData = stateMachineData;
         _view = view;
     }
@@ -22,18 +22,18 @@ public class CharacterEffectTaker {
 
         _multiplier = moveEffect.Multiplier;
         _defaultSpeed = _stateMachineData.Speed;
-        SetSpeedInConfig();
+        SetSpeedInProperties();
         SetSpeedInView();
     }
 
     public void RemoveEffect() {
-        _config.SpeedMultiplier = DefaultSpeedMultiplier;
+        _runProperties.SpeedMultiplier = DefaultSpeedMultiplier;
         _stateMachineData.Speed = _defaultSpeed;
         _view.SetSpeedMultiplier(DefaultSpeedMultiplier);
     }
 
-    private void SetSpeedInConfig() {
-        _config.SpeedMultiplier = _multiplier;
+    private void SetSpeedInProperties() {
+        _runProperties.SpeedMultiplier = _multiplier;
         _stateMachineData.Speed *= _multiplier;
     }
 

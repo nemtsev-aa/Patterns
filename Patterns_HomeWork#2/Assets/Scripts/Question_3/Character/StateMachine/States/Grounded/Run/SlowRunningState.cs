@@ -25,5 +25,5 @@ public class SlowRunningState : BaseRunningState {
        
     }
 
-    protected override void SetSpeed() => Data.Speed = Config.SlowSpeed * SpeedMultiplier;
+    protected override void SetSpeed() => Data.Speed = RunProperties.SlowSpeed;
 }

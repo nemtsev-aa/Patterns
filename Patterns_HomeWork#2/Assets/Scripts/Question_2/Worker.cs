@@ -17,9 +17,7 @@ public class Worker : MonoBehaviour, IMovable {
         Transform = transform;
 
         _stateMachine = new WorkerStateMachine(this);
-        _stateMachine.OnStateChanged += _view.SwitchView;
-
-        _view.Initialize(_stateMachine.States);
+         _view.Initialize(_stateMachine);
     }
 
     private void Update() {

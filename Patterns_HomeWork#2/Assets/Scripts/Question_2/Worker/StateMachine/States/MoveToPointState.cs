@@ -45,6 +45,7 @@ public abstract class MoveToPointState : IState {
 
     private bool TryReachTarget() {
         Vector3 direction = _targetTransform.position - _moverTransform.position;
+        
         if (direction.magnitude > MinDistanceToTarget)
             return false;
      
