@@ -1,6 +1,4 @@
-﻿using static UnityEngine.ParticleSystem;
-
-public interface IMoveEffect {
+﻿public interface IMoveEffect {
     float Multiplier { get; }
     float TimeDuration { get; }
 }
