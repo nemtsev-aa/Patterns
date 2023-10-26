@@ -1,13 +1,11 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class HealingTrigger : HealthBaseTrigger {
     private IHealth _healer;
-
-    protected HealingTrigger(bool isRespawned, IHealth healer) {
-        IsRespawned = isRespawned;
-        TimeDuration = healer.TimeDuration;
-
-        _healer = healer;
+    
+    public void SetHealer(IHealth healer) {
+        _healer = healer; 
     }
 
     protected override void OnTriggerEnter(Collider other) {

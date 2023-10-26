@@ -1,9 +1,18 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public abstract class HealthBaseTrigger : MonoBehaviour {
-    [SerializeField] protected bool IsRespawned = false;
-    [SerializeField, Range(1f, 5f)] protected int Value;
-    [SerializeField, Range(1f, 3f)] protected float TimeDuration;
+    protected bool IsRespawned;
+    protected float Cooldown;
+
+    public event Action<HealthBaseTrigger> Destroyed;
+
+    public virtual void Init(bool isRespawned, float cooldown = 3f) {
+        if (IsRespawned) {
+            IsRespawned = isRespawned;
+            Cooldown = cooldown;
+        }
+    }
 
     protected virtual void ShowTrigger() {
         gameObject.SetActive(true);
@@ -15,8 +24,8 @@ public abstract class HealthBaseTrigger : MonoBehaviour {
         gameObject.SetActive(false);
 
         if (IsRespawned == false)
-            Destroy(gameObject, TimeDuration);
+            Destroyed?.Invoke(this);
         else
-            Invoke(nameof(ShowTrigger), TimeDuration);
+            Invoke(nameof(ShowTrigger), Cooldown);
     }
 }

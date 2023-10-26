@@ -1,12 +1,16 @@
+using System;
 using UnityEngine;
 
 public abstract class Coin : MonoBehaviour {
+    public event Action<Coin> Destroyed;
+    
     private void OnTriggerEnter(Collider other) {
         if (other.TryGetComponent(out ICoinPicker coinPicker)) {
             AddCoins(coinPicker);
-            Destroy(gameObject);
+            Destroyed?.Invoke(this);
         }
     }
 
-    protected abstract void AddCoins(ICoinPicker coinPicker);
+    public abstract void AddCoins(ICoinPicker coinPicker);
 }
+

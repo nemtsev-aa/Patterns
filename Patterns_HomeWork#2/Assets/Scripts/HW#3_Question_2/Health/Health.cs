@@ -1,6 +1,7 @@
 ﻿using System;
+using UnityEngine;
 
-public class Health {
+public class Health : IService {
     private int _max;
     private int _current;
 
@@ -9,10 +10,15 @@ public class Health {
             throw new ArgumentOutOfRangeException($"Invalid HealthMax parameter: {max}");
 
         _max = max;
+        _current = _max;
     }
 
-    public event Action<float, float> HealthCountChanged;
+    public event Action<int, int> HealthCountChanged;
     public event Action HealthIsOver;
+
+    public void ShowHealth() {
+        HealthCountChanged?.Invoke(_current, _max);
+    }
 
     public void TakeHealing(int healing) {
         if (healing <= 0)
@@ -38,5 +44,10 @@ public class Health {
         }
 
         HealthCountChanged?.Invoke(_current, _max);
+    }
+
+    public void Reset() {
+        _current = _max;
+        ShowHealth();
     }
 }

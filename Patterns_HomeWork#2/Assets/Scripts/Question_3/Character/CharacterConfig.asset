@@ -12,6 +12,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9b34d44124598945b54fdc152d8e74e, type: 3}
   m_Name: CharacterConfig
   m_EditorClassIdentifier: 
+  _generalConfig:
+    _maxHealth: 5
+    _experienceCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: -0.042007446
+        value: 5.01239
+        inSlope: 1.6781573
+        outSlope: 1.6781573
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 38.99433
+        value: 70.52151
+        inSlope: 1.6781573
+        outSlope: 1.6781573
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    _maxLevel: 3
   _airborneStateConfig:
     _speed: 4
     _jumpingStateConfig:

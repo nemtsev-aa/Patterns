@@ -1,46 +1,64 @@
 using System;
 using UnityEngine;
 
-public class ExperienceCounter {
-    private float _experience = 0f;
-    private float _nextLevelExperience = 5f;
+public class ExperienceCounter : IService {
     private AnimationCurve _experienceCurve;
-    private int _level;
+    private int _experience;
+    private int _nextLevelExperience;
+    private int _level = 0;
+    private int _maxLevel;
 
-    public ExperienceCounter(AnimationCurve experienceCurve) {
+    private CoinCounter _coinCounter;
+
+    public ExperienceCounter(AnimationCurve experienceCurve, int maxLevel, CoinCounter coinCounter) {
         _experienceCurve = experienceCurve;
-        _nextLevelExperience = _experienceCurve.Evaluate(0);
+        _maxLevel = maxLevel;
+        _nextLevelExperience = (int)_experienceCurve.Evaluate(1);
+
+        _coinCounter = coinCounter;
+        _coinCounter.CoinsCountChanged += AddExperience;
     }
 
-    public event Action<float, float> ExperienceCountChanged;
-    public event Action<int> LevelChanged;
+    public event Action<int, int> ExperienceCountChanged;
+    public event Action<int> ExperienceLevelChanged;
+    public event Action MaxLevelReached;
 
-    public void AddExperience(float value) {
+    public void DisplayExperience() => ExperienceCountChanged?.Invoke(_experience, _nextLevelExperience);
+
+    public void DisplayExperienceLevel() => ExperienceLevelChanged?.Invoke(_level);
+
+    private void AddExperience(int value) {
         if (value <=0) 
             throw new ArgumentOutOfRangeException($"Invalid experience parameter: {value}");
 
         _experience += value;
+
+        int excess = _experience - _nextLevelExperience;
         
-        if (_experience >= _nextLevelExperience)
-            UpLevel();
-        
+        if (excess >= 0 ) {
+            _experience = excess;
+            ExperienceLevelUp();
+        }
+
         DisplayExperience();
     }
 
-   private void UpLevel() {
-        _level++;
-
-        DisplayLevelUp();
-
+    public void Reset() {
         _experience = 0;
-        _nextLevelExperience = _experienceCurve.Evaluate(_level);
+        _level = 0;
+        _nextLevelExperience = (int)_experienceCurve.Evaluate(_level);
+
+        DisplayExperience();
+        DisplayExperienceLevel();
     }
 
-    private void DisplayExperience() {
-        ExperienceCountChanged?.Invoke(_experience, _nextLevelExperience);
-    }
+    private void ExperienceLevelUp() {
+        _level++;
+        DisplayExperienceLevel();
 
-    private void DisplayLevelUp() {
-        LevelChanged?.Invoke(_level);
+        if (_level >= _maxLevel)
+            MaxLevelReached?.Invoke();
+        else
+            _nextLevelExperience = (int)_experienceCurve.Evaluate(_level);
     }
 }
