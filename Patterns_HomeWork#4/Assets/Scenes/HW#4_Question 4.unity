@@ -699,7 +699,8 @@ MonoBehaviour:
   - {fileID: 39055044}
   - {fileID: 798555000}
   - {fileID: 1926874087}
-  _enemyFactory: {fileID: 11400000, guid: 8a6407b24536eed46a278074277be5d0, type: 2}
+  _enemyConfigs: {fileID: 11400000, guid: 3a165af43855bf343825eb91932209ca, type: 2}
+  _visitorFactory: {fileID: 11400000, guid: 0f317371a744e3348972d7ca15196bbb, type: 2}
 --- !u!4 &1377984523
 Transform:
   m_ObjectHideFlags: 0

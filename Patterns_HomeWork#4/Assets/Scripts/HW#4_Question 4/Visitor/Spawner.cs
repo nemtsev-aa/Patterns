@@ -13,6 +13,9 @@ namespace Assets.Visitor {
         [SerializeField] private List<Transform> _spawnPoints;
         [SerializeField] private EnemyFactory _enemyFactory;
 
+        [SerializeField] private EnemyConfigs _enemyConfigs;
+        [SerializeField] private VisitorEnemyFactory _visitorFactory;
+
         private List<Enemy> _spawnedEnemies = new List<Enemy>();
 
         private Coroutine _spawn;
@@ -21,7 +24,7 @@ namespace Assets.Visitor {
         public void StartWork()
         {
             StopWork();
-
+            _visitorFactory.Init();
             _spawn = StartCoroutine(Spawn());
         }
 
@@ -43,7 +46,8 @@ namespace Assets.Visitor {
         {
             while (true)
             {
-                Enemy enemy = _enemyFactory.Get((EnemyType)UnityEngine.Random.Range(0, Enum.GetValues(typeof(EnemyType)).Length));
+                //Enemy enemy = _enemyFactory.Get((EnemyType)UnityEngine.Random.Range(0, Enum.GetValues(typeof(EnemyType)).Length));
+                Enemy enemy = _visitorFactory.Get(_enemyConfigs.GetRandonConfig());
                 enemy.MoveTo(GetRandomPosition());
                 enemy.Died += OnEnemyDied;
                 enemy.transform.SetParent(transform);

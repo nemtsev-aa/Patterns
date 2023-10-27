@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Visitor
@@ -42,6 +39,8 @@ namespace Assets.Visitor
             public void Visit(Enemy enemy) => Visit((dynamic)enemy);
 
             public void Visit(Robot robot) => Score += 15;
+
+            public void Visit(Dwarf dwarf) => Score += 25;
         }
     }
 }

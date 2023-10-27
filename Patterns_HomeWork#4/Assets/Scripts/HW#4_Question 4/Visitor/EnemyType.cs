@@ -5,6 +5,7 @@
         Human,
         Ork,
         Elf,
-        Robot
+        Robot,
+        Dwarf
     }
 }

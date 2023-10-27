@@ -7,5 +7,6 @@
         void Visit(Human human);
         void Visit(Elf elf);
         void Visit(Robot robot);
+        void Visit(Dwarf dwarf);
     }
 }
