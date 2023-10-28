@@ -13,23 +13,19 @@ public class CoinSpawner : ObjectsSpawnerBase {
 
     public override void Reset() {
         StopWork();
-
-        foreach (var iCoin in _coins) {
-            Destroy(iCoin.gameObject);
-        }
-
-        _coins.Clear();
+        if (_coins != null)
+            ClearCoinsList();
     }
 
     protected override IEnumerator SpawnObjects() {
         StartCreated?.Invoke();
-       
+
         _coins = new List<Coin>();
 
         for (int i = 0; i < SpawnPoints.Count; i++) {
             Coin coin = _coinFactory.Get(GetRamdomType(), transform);
             coin.transform.position = GetRandomPosition();
-            coin.Destroyed += OnDestroyed;
+            coin.Destroyed += OnCoinDestroyed;
 
             _coins.Add(coin);
 
@@ -57,10 +53,18 @@ public class CoinSpawner : ObjectsSpawnerBase {
         }
     }
 
-    private void OnDestroyed(Coin coin) {
-        coin.Destroyed -= OnDestroyed;
+    private void OnCoinDestroyed(Coin coin) {
+        coin.Destroyed -= OnCoinDestroyed;
         _coins.Remove(coin);
         Destroy(coin.gameObject);
+    }
+
+    private void ClearCoinsList() {
+        foreach (var iCoin in _coins) {
+            Destroy(iCoin.gameObject);
+        }
+
+        _coins.Clear();
     }
 }
     

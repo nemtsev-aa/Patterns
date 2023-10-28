@@ -11,7 +11,6 @@ namespace Assets.Visitor {
 
         [SerializeField] private float _spawnCooldown;
         [SerializeField] private List<Transform> _spawnPoints;
-        [SerializeField] private EnemyFactory _enemyFactory;
 
         [SerializeField] private EnemyConfigs _enemyConfigs;
         [SerializeField] private VisitorEnemyFactory _visitorFactory;
@@ -46,7 +45,6 @@ namespace Assets.Visitor {
         {
             while (true)
             {
-                //Enemy enemy = _enemyFactory.Get((EnemyType)UnityEngine.Random.Range(0, Enum.GetValues(typeof(EnemyType)).Length));
                 Enemy enemy = _visitorFactory.Get(_enemyConfigs.GetRandonConfig());
                 enemy.MoveTo(GetRandomPosition());
                 enemy.Died += OnEnemyDied;

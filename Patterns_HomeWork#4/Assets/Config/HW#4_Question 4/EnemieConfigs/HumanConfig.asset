@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6aec0d4610c715e44a19ed17524f7baf, type: 3}
   m_Name: HumanConfig
   m_EditorClassIdentifier: 
-  _prefab: {fileID: 1868710430493488911, guid: 8f5cb7550d8a81e4aba8042b7f910ae7, type: 3}
-  _health: 3
-  _speed: 6
+  EnemyPrefab: {fileID: 1868710430493488911, guid: 8f5cb7550d8a81e4aba8042b7f910ae7,
+    type: 3}
+  EnemyHealth: 5
+  EnemySpeed: 5

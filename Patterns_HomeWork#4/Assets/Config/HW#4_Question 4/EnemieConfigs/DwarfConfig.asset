@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0133aab76bc5b3341a5a4319431b9f34, type: 3}
   m_Name: DwarfConfig
   m_EditorClassIdentifier: 
-  _prefab: {fileID: 1154392454389969496, guid: 9382a3157520f8e4eada77534fcf8190, type: 3}
-  _health: 7
-  _speed: 1
+  EnemyPrefab: {fileID: 1154392454389969496, guid: 9382a3157520f8e4eada77534fcf8190,
+    type: 3}
+  EnemyHealth: 9
+  EnemySpeed: 2

@@ -10,9 +10,8 @@ public abstract class ObjectsSpawnerBase : MonoBehaviour {
     [field: SerializeField] public float SpawnCooldown { get; private set; }
 
     public virtual void StartWork() {
-        if (SpawnPoints.Count == 0) {
+        if (SpawnPoints.Count == 0)
             throw new ArgumentOutOfRangeException($"Invalid SpawnPoints count: {SpawnPoints}");
-        }
 
         StopWork();
 
@@ -27,8 +26,4 @@ public abstract class ObjectsSpawnerBase : MonoBehaviour {
     public abstract void Reset();
 
     protected abstract IEnumerator SpawnObjects();
-
-    protected virtual void OnDisable() {
-
-    }
 }

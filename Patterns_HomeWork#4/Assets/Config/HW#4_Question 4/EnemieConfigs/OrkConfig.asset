@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17b835d48afedaf4a9a24c7f441d1837, type: 3}
   m_Name: OrkConfig
   m_EditorClassIdentifier: 
-  _prefab: {fileID: 3375915119821841417, guid: d637bafb9c8e5e746aaadf5d0ebe2285, type: 3}
-  _health: 6
-  _speed: 3
+  EnemyPrefab: {fileID: 3375915119821841417, guid: d637bafb9c8e5e746aaadf5d0ebe2285,
+    type: 3}
+  EnemyHealth: 8
+  EnemySpeed: 4

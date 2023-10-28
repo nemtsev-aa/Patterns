@@ -3,11 +3,11 @@ using System;
 using UnityEngine;
 
 public abstract class EnemyConfig : ScriptableObject {
-    [SerializeField] protected Enemy _prefab;
-    [SerializeField, Range(1, 10)] protected int _health;
-    [SerializeField, Range(1, 10)] protected float _speed;
+    [SerializeField] protected Enemy EnemyPrefab;
+    [SerializeField, Range(1, 10)] protected int EnemyHealth;
+    [SerializeField, Range(1, 10)] protected float EnemySpeed;
 
-    public Enemy Prefab => _prefab;
-    public int Health => _health;
-    public float Speed => _speed;
+    public Enemy Prefab => EnemyPrefab;
+    public int Health => EnemyHealth;
+    public float Speed => EnemySpeed;
 }

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 521467e3b84b1084cb7f382f9db04e74, type: 3}
   m_Name: RobotConfig
   m_EditorClassIdentifier: 
-  _prefab: {fileID: 7004240944932430003, guid: f94ccb95f96afb54788dea9f290d0054, type: 3}
-  _health: 5
-  _speed: 5
+  EnemyPrefab: {fileID: 7004240944932430003, guid: f94ccb95f96afb54788dea9f290d0054,
+    type: 3}
+  EnemyHealth: 6
+  EnemySpeed: 6
