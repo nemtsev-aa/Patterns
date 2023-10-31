@@ -1,14 +1,16 @@
-using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class PlayerCharacter : Character {
-    [Header("Move Settings")]
-    [SerializeField] private Rigidbody _rigidbody;
     [SerializeField] float _minHeadAngle = -90f;
     [SerializeField] float _maxHeadAngle = 90f;
-    [Header("Vision Settings")]
+    
     [SerializeField] private Transform _cameraPoint;
     [SerializeField] Transform _head;
+
+    private Controller _controller;
+    private Shooter _shooter;
+    private Rigidbody _rigidbody;
 
     private float _inputH;
     private float _inputV;
@@ -16,11 +18,18 @@ public class PlayerCharacter : Character {
     private float _rotateY;
     private float _currentRotateX;
 
-    private void Start() {
-        Transform camera = Camera.main.transform;
-        camera.parent = _cameraPoint;
-        camera.localPosition = Vector3.zero;
-        camera.localRotation = Quaternion.identity;
+    public void Init(Controller controller, Shooter shooter) {
+        _shooter = shooter;
+        _controller = controller;
+        _controller.InputDataChanged += SetInput;
+
+        SetCameraInPositon();
+
+        _rigidbody ??= GetComponent<Rigidbody>();
+    }
+
+    private void OnDisable() {
+        _controller.InputDataChanged -= SetInput;
     }
 
     private void Update() {
@@ -32,15 +41,24 @@ public class PlayerCharacter : Character {
         RotateY();
     }
 
-    public void SetInput(float h, float v, float rotateX, float rotateY) {
-        _inputH = h;
-        _inputV = v;
-        _rotateX = rotateX;
-        _rotateY += rotateY;
+    private void OnTriggerEnter(Collider other) {
+        if (other.TryGetComponent(out BulletLoot loot)) {
+            _shooter.AddBullets(loot.GunIndex, loot.NumberOfBullets);
+        }
     }
 
-    public void SetInput() {
+    private void SetCameraInPositon() {
+        Transform camera = Camera.main.transform;
+        camera.parent = _cameraPoint;
+        camera.localPosition = Vector3.zero;
+        camera.localRotation = Quaternion.identity;
+    }
 
+    private void SetInput(InputData inputData) {
+        _inputH = inputData.HorizontalAxisValue;
+        _inputV = inputData.VerticalAxisValue;
+        _rotateX = inputData.RotateX;
+        _rotateY += inputData.RotateY;
     }
 
     private void Move() {
@@ -49,14 +67,7 @@ public class PlayerCharacter : Character {
         _rigidbody.velocity = velocity;
     }
 
-    public void GetMoveInfo(out Vector3 position, out Vector3 velocity, out float rotateX, out float rotateY) {
-        position = transform.position;
-        velocity = _rigidbody.velocity;
-        rotateX = _head.localEulerAngles.x;
-        rotateY = transform.eulerAngles.y;
-    }
-
-    public void RotateX(float value) {
+    private void RotateX(float value) {
         _currentRotateX = Mathf.Clamp(_currentRotateX + value, _minHeadAngle, _maxHeadAngle);
         _head.localEulerAngles = new Vector3(_currentRotateX, 0, 0);
     }

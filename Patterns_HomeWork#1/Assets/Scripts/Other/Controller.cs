@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -5,15 +6,18 @@ public class Controller : MonoBehaviour {
     private const string MouseX = "Mouse X";
     private const string MouseY = "Mouse Y";
     private const int ShootButtonIndex = 0;
-    private const string H = "Horizontal";
-    private const string V = "Vertical";
+    private const string Horizontal = "Horizontal";
+    private const string Vertical = "Vertical";
     private const string MouseScrollWheel = "Mouse ScrollWheel";
 
-    [SerializeField] private PlayerCharacter _player;
-    [SerializeField] private Armory _armory;
     [SerializeField] private float _mouseSensetivity = 2f;
 
     private bool _hideCursor;
+
+    public event Action<InputData> InputDataChanged;
+    public event Action MouseLeftClicked;
+    public event Action<bool> MouseScrolled;
+    public event Action<KeyCode> KeyDown;
 
     private void Start() {
         _hideCursor = true;
@@ -35,26 +39,28 @@ public class Controller : MonoBehaviour {
             isShoot = Input.GetMouseButton(ShootButtonIndex);
         }
 
-        float h = Input.GetAxis(H);
-        float v = Input.GetAxis(V);
         float rotateX = -mouseY * _mouseSensetivity;
         float rotateY = mouseX * _mouseSensetivity;
 
-        _player.SetInput(h, v, rotateX, rotateY);
+        float horizontalAxisValue = Input.GetAxis(Horizontal);
+        float verticalAxisValue = Input.GetAxis(Vertical);
 
+        InputData inputData = new InputData(rotateX, rotateY, horizontalAxisValue, verticalAxisValue);
+        InputDataChanged?.Invoke(inputData);
 
-        if (isShoot) _armory.TryShoot();
+        if (isShoot)
+            MouseLeftClicked?.Invoke();
 
         if (Input.GetAxis(MouseScrollWheel) >= 0.1f) {
-            _armory.SendWeaponID(true);
+            MouseScrolled?.Invoke(true);
         }
-        else if (Input.GetAxis(MouseScrollWheel) < 0f) {
-            _armory.SendWeaponID(false);
+        
+        if (Input.GetAxis(MouseScrollWheel) < 0f) {
+            MouseScrolled?.Invoke(false);
         }
     }
 
     private void OnKeyDown(KeyDownEvent ev) {
-        _armory.SendWeaponID(ev.keyCode);
-        Debug.Log($"{ev.keyCode}");
+        KeyDown?.Invoke(ev.keyCode);
     }
 }

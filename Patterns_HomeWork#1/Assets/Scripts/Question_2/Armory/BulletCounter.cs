@@ -1,35 +1,42 @@
 using System;
-using UnityEngine;
 
-public class BulletCounter : MonoBehaviour {
-    [Tooltip("Максимальное количество пуль")]
-    [field: SerializeField] public int MaxNumber { get; private set; }
-    public int NumberOfBullets => _currentNumber;
-
-    public event Action<int> OnBulletsCountChanged;
-    public event Action OnBulletsOut;
-
+public class BulletCounter {
     private int _currentNumber;
+    private int _maxNumber;
 
-    private void OnValidate() {
-        _currentNumber = MaxNumber;
+    public BulletCounter(int maxNumber) {
+        _maxNumber = _currentNumber = maxNumber;
     }
 
+    public int MaxNumber => _maxNumber;
+    public int NumberOfBullets => _currentNumber;
+
+    public event Action<int> BulletsCountChanged;
+    public event Action BulletsOut;
+
     public void TakeBullets(int value) {
+        if (value <= 0)
+            throw new ArgumentOutOfRangeException($"Invalid bullet count {value}");
+
         _currentNumber -= value;
+        
         if (_currentNumber <= 0) {
             _currentNumber = 0;
-            OnBulletsOut?.Invoke();
-        } else {
-            OnBulletsCountChanged?.Invoke(_currentNumber);
-        }
+            BulletsOut?.Invoke();
+        } 
+        else 
+            BulletsCountChanged?.Invoke(_currentNumber); 
     }
 
     public void AddBullets(int value) {
-        if (value < 0) throw new ArgumentOutOfRangeException(nameof(value));
+        if (value < 0)
+            throw new ArgumentOutOfRangeException($"Invalid bullet count {value}");
 
         _currentNumber += value;
-        if (_currentNumber > MaxNumber) _currentNumber = MaxNumber;
-        OnBulletsCountChanged?.Invoke(_currentNumber);
+
+        if (_currentNumber > MaxNumber)
+            _currentNumber = MaxNumber;
+
+        BulletsCountChanged?.Invoke(_currentNumber);
     }
 }
