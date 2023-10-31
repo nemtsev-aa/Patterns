@@ -1,6 +1,6 @@
 using UnityEngine;
 
 public interface ITrader {
-    ParticleSystem ParticleSystem { get; }
+    TradeStrategieConfig Config{ get; }
     string Sell();
 }

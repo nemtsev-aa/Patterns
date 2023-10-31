@@ -1,10 +1,10 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class PlayerCharacter : Character {
+public class PlayerCharacter : Character, ITradable {
+    [SerializeField, Range(0,50)] private int _reputation;
     [SerializeField] float _minHeadAngle = -90f;
     [SerializeField] float _maxHeadAngle = 90f;
-    
     [SerializeField] private Transform _cameraPoint;
     [SerializeField] Transform _head;
 
@@ -17,9 +17,22 @@ public class PlayerCharacter : Character {
     private float _rotateX;
     private float _rotateY;
     private float _currentRotateX;
+    
+    public int Reputation => _reputation;
+    public Transform Transform => transform;
+
 
     public void Init(Controller controller, Shooter shooter) {
         _shooter = shooter;
+        _controller = controller;
+        _controller.InputDataChanged += SetInput;
+
+        SetCameraInPositon();
+
+        _rigidbody ??= GetComponent<Rigidbody>();
+    }
+
+    public void Init(Controller controller) {
         _controller = controller;
         _controller.InputDataChanged += SetInput;
 
