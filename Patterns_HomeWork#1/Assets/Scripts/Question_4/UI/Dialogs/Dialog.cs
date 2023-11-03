@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class Dialog : MonoBehaviour {
+public class Dialog : MonoBehaviour, IDisposable {
     public event Action OnClosed;
 
     public virtual void Show(bool value) {
@@ -10,5 +10,9 @@ public class Dialog : MonoBehaviour {
 
     public virtual void Close() {
         OnClosed?.Invoke();
+    }
+
+    public virtual void Dispose() {
+        
     }
 }

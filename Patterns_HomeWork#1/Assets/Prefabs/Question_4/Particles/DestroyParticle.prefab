@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1842031063863612882}
   - component: {fileID: 2870881444818272192}
   m_Layer: 0
-  m_Name: WhiteDestruction
+  m_Name: DestroyParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -602,7 +602,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 1000
+    maxNumParticles: 10
     customEmitterVelocity: {x: 0, y: 0, z: 0}
     size3D: 0
     rotation3D: 1
@@ -4772,7 +4772,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 74b60c84f85c0f24d826a4a057a31ddf, type: 2}
+  - {fileID: 2100000, guid: e83b740af37893f49a8aa59d8f333233, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

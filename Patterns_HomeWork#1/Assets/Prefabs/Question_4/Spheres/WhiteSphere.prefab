@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7357012928726410784}
   - component: {fileID: 5080942346428548239}
-  - component: {fileID: 4135541547404189142}
+  - component: {fileID: 4977745368949907911}
+  - component: {fileID: 6159721293296304343}
   m_Layer: 0
   m_Name: WhiteSphere
   m_TagString: Untagged
@@ -47,7 +48,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 5.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4135541547404189142
+--- !u!114 &4977745368949907911
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -56,10 +57,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 5328869830245512702}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcd9827cc7b057a47be2e88f06a8b0d1, type: 3}
+  m_Script: {fileID: 11500000, guid: 28401db599c254040a2aa6bf6e46e3d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <MeshRenderer>k__BackingField: {fileID: 3380519490771163991}
+  _color: {r: 1, g: 1, b: 1, a: 1}
+  _meshRenderer: {fileID: 3380519490771163991}
+  _destroyParticle: {fileID: 6159721293296304343}
+--- !u!114 &6159721293296304343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5328869830245512702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 441a8284b8d85eb4db523ddbe8f894c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   _destroyParticle: {fileID: 1842031063863612882, guid: 43b55eb7732e7934394d72c976447f2b,
     type: 3}
 --- !u!1 &5713528401790740640

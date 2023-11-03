@@ -1,8 +1,19 @@
+using System.Collections.Generic;
+using System.Linq;
 
 public class SameColorSphereDestroyed : VictoryCondition {
-    public Sphere Sphere { get; private set; }
+    public SameColorSphereDestroyed(IEnumerable<Sphere> spheres, InputSystem inputSystem) : base(spheres, inputSystem) {
+    }
 
-    public SameColorSphereDestroyed(Sphere sphere) {
-        Sphere = sphere;
+    public int CountNumberSpheresByType() {
+        return Spheres.Count(sphere => sphere.Color == Color);
+    }
+
+    protected override void CountNumberSpheres(Sphere sphere) {
+        if (sphere.Color != Color)
+            return;
+
+        if (CountNumberSpheresByType() == 0)
+            SetComplited();
     }
 }

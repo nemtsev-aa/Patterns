@@ -280,7 +280,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &514930935
 GameObject:
@@ -396,6 +396,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9ef676a8b2b8c7428f2bffeca58fecd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &768565812
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 768565814}
+  - component: {fileID: 768565813}
+  m_Layer: 0
+  m_Name: DialogSwitcher
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &768565813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 768565812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 262091c3d8069ad41a4ab0dcfb2d70c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dialogFactory: {fileID: 514930940}
+--- !u!4 &768565814
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 768565812}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &961739749
 GameObject:
   m_ObjectHideFlags: 0
@@ -525,7 +570,7 @@ GameObject:
   - component: {fileID: 974995697}
   - component: {fileID: 974995698}
   m_Layer: 0
-  m_Name: SphereCraetor
+  m_Name: SpheresSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -544,7 +589,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &974995698
 MonoBehaviour:
@@ -558,14 +603,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a69094f8d1b3ed24889c2db9bf555fd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spherePrefabs:
-  - {fileID: 4135541547404189142, guid: 05c6fe2352d17f043894e248d5ca8041, type: 3}
-  - {fileID: -4692973171282088036, guid: 7c4864d2971936a40b6e45017428942f, type: 3}
-  - {fileID: 3308959930400501410, guid: ad8794126b22f1348a9c047302a80ff0, type: 3}
-  _rowCount: 4
-  _columnCount: 4
-  _startPos: {x: 0, y: 0, z: 0}
-  _offset: {x: 20, y: 20, z: 0}
+  _spawnCooldown: 0.03
+  _factory: {fileID: 11400000, guid: aca4c6f0362fd964a8b28ea696f45fcf, type: 2}
 --- !u!1 &1176494761
 GameObject:
   m_ObjectHideFlags: 0
@@ -577,7 +616,7 @@ GameObject:
   - component: {fileID: 1176494763}
   - component: {fileID: 1176494762}
   m_Layer: 0
-  m_Name: ApplicationManager
+  m_Name: ApplicationMediator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -595,8 +634,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d8b75e6b8892194d860dc11b04ab474, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dialogManager: {fileID: 514930940}
-  _levelManager: {fileID: 1922830179}
+  _inputSystem: {fileID: 250807533}
+  _dialogSwitcher: {fileID: 768565813}
+  _spawner: {fileID: 974995698}
+  _placer: {fileID: 1572717454}
+  _sphereCount: 16
 --- !u!4 &1176494763
 Transform:
   m_ObjectHideFlags: 0
@@ -621,26 +663,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1572717453}
-  - component: {fileID: 1572717452}
+  - component: {fileID: 1572717454}
   m_Layer: 0
-  m_Name: SphereCounter
+  m_Name: SpheresPlacer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1572717452
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1572717451}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52ce65cc01e452742be26a064cd9339f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1572717453
 Transform:
   m_ObjectHideFlags: 0
@@ -654,8 +684,23 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1572717454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1572717451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ad783ea6f033a84e9816758f05a285f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _columnCount: 4
+  _startPos: {x: 0, y: 0, z: 0}
+  _offset: {x: 25, y: 25, z: 0}
 --- !u!1 &1615104683
 GameObject:
   m_ObjectHideFlags: 0
@@ -724,53 +769,6 @@ MonoBehaviour:
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
---- !u!1 &1922830177
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1922830178}
-  - component: {fileID: 1922830179}
-  m_Layer: 0
-  m_Name: Level
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1922830178
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1922830177}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1922830179
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1922830177}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64eec2ab242bf704bb6e3fd0edba5da2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _sphereCraetor: {fileID: 974995698}
-  _sphereCounter: {fileID: 1572717452}
-  _inputSystem: {fileID: 250807533}
 --- !u!1 &2006976380
 GameObject:
   m_ObjectHideFlags: 0

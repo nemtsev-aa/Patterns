@@ -2,13 +2,12 @@ using System;
 using UnityEngine;
 
 public class InputSystem : MonoBehaviour {
+    public const int LeftMouseButton = 0;
     public event Action<Vector3> Clicked;
-    private Vector3 _position;
 
     void Update() {
-        if (Input.GetMouseButton(0)) {
+        if (Input.GetMouseButton(LeftMouseButton)) 
             Clicked?.Invoke(Input.mousePosition);
-        }
     }
 }
  

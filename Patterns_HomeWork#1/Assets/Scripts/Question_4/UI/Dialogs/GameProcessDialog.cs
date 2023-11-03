@@ -3,30 +3,26 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class GameProcessDialog : Dialog {
+    private const string AllColorQuestionText = "Лопни все шарики";
+    private const string SameColorQuestionText = "Лопни шарики одного цвета";
+
     [SerializeField] private Button _backToMainMenuButton;
     [SerializeField] private TextMeshProUGUI _helpText;
+    private string text = "";
 
-    public void SetVictoryCondition(VictoryCondition victory) {
-        string text = "";
-
-        if (victory is AllSphereDestroyed) text = $"Лопни все шарики";
-        if (victory is SameColorSphereDestroyed) {
-            text = $"Лопни шарики одного цвета";
-            _helpText.color = GetSelectColor((SameColorSphereDestroyed)victory);
-        }
-
-        _helpText.text = text;
+    public void SetAllColorVictoryCondition() {
+        _helpText.text = AllColorQuestionText;
+        _helpText.color = Color.white;
     }
 
-    private void Start() {
-        _backToMainMenuButton.onClick.AddListener(BackToMainMenuButtonClick);
+    public void SetSameColorVictoryCondition(Sphere sphere) {
+        _helpText.text = SameColorQuestionText;
+        _helpText.color = sphere.Color;
     }
 
-    private Color GetSelectColor(SameColorSphereDestroyed sameColor) {
-        return sameColor.Sphere.MeshRenderer.sharedMaterial.color;
-    }
+    private void Start() => _backToMainMenuButton.onClick.AddListener(BackToMainMenuButtonClick);
 
-    private void BackToMainMenuButtonClick() {
-        Close();
-    }
+    private void BackToMainMenuButtonClick() => Close();
+
+    public override void Dispose() => _backToMainMenuButton.onClick.RemoveListener(BackToMainMenuButtonClick);
 }

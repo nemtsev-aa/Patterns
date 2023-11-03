@@ -11,7 +11,7 @@ public class VariantView : MonoBehaviour {
 
     public void SetColor(Sphere sphere) {
         _sphere = sphere;
-        _sphereColor.color = _sphere.MeshRenderer.sharedMaterial.color;
+        _sphereColor.color = _sphere.Color;
     }
 
     private void Start() {
