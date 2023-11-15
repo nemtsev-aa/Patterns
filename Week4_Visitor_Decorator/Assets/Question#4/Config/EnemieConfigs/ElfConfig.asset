@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 557a1a42ab912274cb9b270fae83de29, type: 3}
+  m_Name: ElfConfig
+  m_EditorClassIdentifier: 
+  EnemyPrefab: {fileID: 3621773373342976457, guid: da434ac2aeed9644abf3d66f664f7878,
+    type: 3}
+  EnemyHealth: 3
+  EnemySpeed: 8

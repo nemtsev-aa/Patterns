@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33e596a20b0509043a6a9bcc7081b84e, type: 3}
+  m_Name: SpriteConfig
+  m_EditorClassIdentifier: 
+  _gameCoinSprite: {fileID: 21300000, guid: 638e5f416566f134c9a886e3a94ce049, type: 3}
+  _gameEnergySprite: {fileID: 21300000, guid: 86bf23bd2d09cb743b5c8031ae1a1b9c, type: 3}
+  _shopCoinSprite: {fileID: 21300000, guid: 6c6008a4800440641931e89ef3d26fb2, type: 3}
+  _shopEnergySprite: {fileID: 21300000, guid: 7f6cb1021d932b045bbc8c2ce5150a55, type: 3}
+  _winCoinSprite: {fileID: 21300000, guid: 74d2333b152df82438940ca85eb58f33, type: 3}
+  _winEnergySprite: {fileID: 21300000, guid: 3c49f0a02bfcc3a4997e40d427da7504, type: 3}

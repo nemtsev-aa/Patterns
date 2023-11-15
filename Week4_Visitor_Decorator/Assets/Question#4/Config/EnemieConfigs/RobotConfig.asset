@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 521467e3b84b1084cb7f382f9db04e74, type: 3}
+  m_Name: RobotConfig
+  m_EditorClassIdentifier: 
+  EnemyPrefab: {fileID: 5093080905674685358, guid: f94ccb95f96afb54788dea9f290d0054,
+    type: 3}
+  EnemyHealth: 6
+  EnemySpeed: 6
