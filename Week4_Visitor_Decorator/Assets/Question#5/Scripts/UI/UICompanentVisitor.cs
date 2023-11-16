@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 public class UICompanentVisitor : ICompanentVisitor {
-    private IEnumerable<UICompanent> _companents;
+    private readonly IEnumerable<UICompanent> _companents;
 
     public UICompanentVisitor(IEnumerable<UICompanent> companents) {
         _companents = companents;

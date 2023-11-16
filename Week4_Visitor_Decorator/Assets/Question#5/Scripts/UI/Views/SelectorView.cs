@@ -16,6 +16,7 @@ public class SelectorView : UICompanent {
     [field: SerializeField] public Image Frame { get; private set; }
 
     public SelectorViewConfig Config => _config;
+    public bool IsActive = false;
 
     public void Init(SelectorViewConfig config, Color headerColor, Sprite frame) {
         _config = config;
@@ -26,7 +27,6 @@ public class SelectorView : UICompanent {
     }
 
     private void —onfigure—omponents() {
-        //name = $"{_config.Type}";
         Icon.sprite = _config.Icon;
         Frame.sprite = _frame;
         Frame.color = _headerColor;
@@ -42,6 +42,7 @@ public class SelectorView : UICompanent {
     }
 
     private void OnMouseDown() {
+        IsActive = true;
         MouseDown?.Invoke(this);
     }
 }

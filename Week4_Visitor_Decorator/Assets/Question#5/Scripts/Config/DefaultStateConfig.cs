@@ -7,9 +7,9 @@ public class DefaultStateConfig : DecoratorConfig {
 
     public Modifiers DefaultState => _defaultState;
 
-    public override List<Modifiers> GetModifiers() {
-        return new List<Modifiers> {
-            _defaultState
+    public override Dictionary<string, Modifiers> GetDictionaryStringModifiers() {
+        return new Dictionary<string, Modifiers> {
+            {"default", _defaultState }
         };
     }
 }

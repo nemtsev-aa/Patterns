@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,7 +16,9 @@ public class PanelView : UICompanent, IDisposable {
     [field: SerializeField] public RectTransform SelectorsParent { get; private set; }
 
     public PanelViewConfig Config => _config;
-    
+
+    public SelectorView ActiveSelector => _selectors.First(selector => selector.IsActive == true);
+
     public void Init(PanelViewConfig config, List<SelectorView> selectors) {
         _config = config;
         _selectors = selectors;
@@ -24,13 +27,15 @@ public class PanelView : UICompanent, IDisposable {
     }
 
     private void ÑonfigureÑomponents() {
-        //name = $"{_config.Type}";
+        name = $"{_config.Type}";
         HeaderImage.color = _config.HeaderColor;
         HeaderText.text = name;
 
         foreach (var iSelector in _selectors) {
             iSelector.Toggle.onValueChanged.AddListener((value) => ActivateSelector(value, iSelector));
         }
+
+        _selectors[0].IsActive = true;
     }
 
     private void ActivateSelector(bool value, SelectorView selector) {

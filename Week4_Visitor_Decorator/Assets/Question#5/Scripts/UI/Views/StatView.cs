@@ -6,6 +6,7 @@ public class StatView : UICompanent {
     private StatViewConfig _config;
     [field: SerializeField] public TextMeshProUGUI HeaderText { get; private set; }
     [field: SerializeField] public Image Icon { get; private set; }
+    [field: SerializeField] public TextMeshProUGUI ValueText { get; private set; }
     
     public StateTypes Type { get; private set; }
 
@@ -13,6 +14,8 @@ public class StatView : UICompanent {
         _config = config;
         —onfigure—omponents();
     }
+
+    public void SetValue(int value) => ValueText.text = $"{value}";
 
     private void —onfigure—omponents() {
         HeaderText.text = $"{_config.Type}";

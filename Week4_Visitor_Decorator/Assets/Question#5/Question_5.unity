@@ -272,6 +272,61 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Race>k__BackingField: 0
   <Specialization>k__BackingField: 2
+--- !u!1 &126459353
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 126459354}
+  - component: {fileID: 126459355}
+  m_Layer: 5
+  m_Name: CreationWindow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &126459354
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 126459353}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 505637288}
+  m_Father: {fileID: 1034401788}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &126459355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 126459353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cb25a9078bc2124b8eb2bf4a0d4aec9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _decoratorConfigs: {fileID: 11400000, guid: 6c67b2bd7bb1c5e4eb6fcaf242a27a36, type: 2}
+  _creationPanelsView: {fileID: 505637289}
+  _characterStatsView: {fileID: 349253597}
+  _uICompanentFactory: {fileID: 11400000, guid: 0baa53edf04750c40b3761c8f1ae7fba,
+    type: 2}
 --- !u!1 &180097465
 GameObject:
   m_ObjectHideFlags: 0
@@ -771,7 +826,7 @@ GameObject:
   - component: {fileID: 505637288}
   - component: {fileID: 505637289}
   m_Layer: 5
-  m_Name: CharacterCreationView
+  m_Name: CreationPanelsView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -784,14 +839,14 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 505637287}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 52731624}
   - {fileID: 349253596}
-  m_Father: {fileID: 1034401788}
+  m_Father: {fileID: 126459354}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -816,13 +871,15 @@ MonoBehaviour:
   - <HeaderColor>k__BackingField: {r: 1, g: 0.29164252, b: 0, a: 1}
     <Frame>k__BackingField: {fileID: 21300000, guid: e465e87f17e122345974ea01613cf28f,
       type: 3}
+    <Type>k__BackingField: 0
   - <HeaderColor>k__BackingField: {r: 0, g: 0.21920681, b: 1, a: 1}
     <Frame>k__BackingField: {fileID: 21300000, guid: e465e87f17e122345974ea01613cf28f,
       type: 3}
+    <Type>k__BackingField: 1
   - <HeaderColor>k__BackingField: {r: 1, g: 0, b: 0.79263115, a: 1}
     <Frame>k__BackingField: {fileID: 21300000, guid: e465e87f17e122345974ea01613cf28f,
       type: 3}
-  _decoratorConfigs: {fileID: 0}
+    <Type>k__BackingField: 2
 --- !u!4 &588753549 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4654099453726701576, guid: 653e3ea871481d54bbfc30b703b1b56d,
@@ -1415,7 +1472,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 505637288}
+  - {fileID: 126459354}
   m_Father: {fileID: 70036232}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -7,11 +7,19 @@ public class SpecializationDecoratorConfig : DecoratorConfig {
     [field: SerializeField] public Modifiers Mage { get; private set; }
     [field: SerializeField] public Modifiers Warrior { get; private set; }
 
-    public override List<Modifiers> GetModifiers() {
-        return new List<Modifiers> {
-            Archer,
-            Mage,
-            Warrior
+    public override Dictionary<string, Modifiers> GetDictionaryStringModifiers() {
+        return new Dictionary<string, Modifiers> {
+            { $"{Specializations.Archer}", Archer },
+            { $"{Specializations.Mage}", Mage },
+            { $"{Specializations.Warrior}", Warrior }
+        };
+    }
+
+    public Dictionary<Specializations, Modifiers> GetDictionaryEnumModifiers() {
+        return new Dictionary<Specializations, Modifiers> {
+            { Specializations.Archer, Archer },
+            { Specializations.Mage, Mage },
+            { Specializations.Warrior, Warrior }
         };
     }
 }
